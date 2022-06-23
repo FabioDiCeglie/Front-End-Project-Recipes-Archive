@@ -1,10 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
-
-interface Recipe {
-  name: String;
-  description: String;
-}
+import { Recipe } from "./interfaceTS/interface";
 
 const QUERY = gql`
   query GetRecipes {
