@@ -13,7 +13,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <NavigationBar />
-      <Component {...pageProps} />
+      <>
+        <Component {...pageProps} />
+      </>
     </ApolloProvider>
   );
 }

@@ -17,10 +17,10 @@ export default function Home() {
   if (loading) return "Loading";
 
   return (
-    <div>
+    <>
       {data.getRecipes.map((recipe: Recipe, i: number) => {
         return (
-          <Card sx={{ maxWidth: 345 }} key={i}>
+          <Card sx={{ maxWidth: 300 }} key={i}>
             <CardMedia component="img" height="140" image="" alt="" />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
@@ -33,6 +33,6 @@ export default function Home() {
           </Card>
         );
       })}
-    </div>
+    </>
   );
 }
