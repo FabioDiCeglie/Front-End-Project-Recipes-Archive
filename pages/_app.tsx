@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { ApolloProvider } from "@apollo/client";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import NavigationBar from "../pages/components/NavigationBar";
+import NavigationBar from "../src/components/NavigationBar";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
