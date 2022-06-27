@@ -9,11 +9,12 @@ import {
   CardActions,
 } from "@mui/material";
 import { Recipe } from "../src/interfaceTS/interface";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 const QUERY = gql`
   query GetRecipes {
     getRecipes {
+      id
       name
       description
       imageUrl
@@ -22,6 +23,7 @@ const QUERY = gql`
 `;
 
 export default function Home() {
+  const router = useRouter();
   const { data, loading, error } = useQuery(QUERY);
 
   if (error) return;
@@ -31,8 +33,8 @@ export default function Home() {
     <Container sx={{ mt: 12 }}>
       {data.getRecipes.map((recipe: Recipe, i: number) => {
         return (
-          <Container sx={{ mt: 6 }}>
-            <Card sx={{ maxWidth: 300 }} key={i}>
+          <Container sx={{ mt: 6 }} key={i}>
+            <Card sx={{ maxWidth: 300 }}>
               <CardMedia
                 component="img"
                 height="140"
@@ -49,9 +51,16 @@ export default function Home() {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Link href="/recipe-details">
-                  <Button size="small">Learn More</Button>
-                </Link>
+                <Button
+                  size="small"
+                  onClick={() => {
+                    router.push({
+                      pathname: `/recipe-details/${recipe.id}`,
+                    });
+                  }}
+                >
+                  Learn More
+                </Button>
               </CardActions>
             </Card>
           </Container>
