@@ -7,6 +7,7 @@ import {
   Toolbar,
   InputBase,
   Typography,
+  Button,
 } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
@@ -53,7 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function NavigationBar() {
   return (
-    <AppBar position="fixed" elevation={0}>
+    <AppBar position="fixed" elevation={0} style={{ background: "#2E3B55" }}>
       <Toolbar>
         <Container>
           <Stack
@@ -68,8 +69,28 @@ export default function NavigationBar() {
               component="div"
               sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
             >
-              RECIPES FOR FABIO
+              Recipes
             </Typography>
+            <Button
+              component="div"
+              sx={{
+                flexGrow: 0.1,
+                display: { xs: "none", sm: "block" },
+                color: "white",
+              }}
+            >
+              Log In
+            </Button>
+            <Button
+              component="div"
+              sx={{
+                flexGrow: 0.1,
+                display: { xs: "none", sm: "block" },
+                color: "white",
+              }}
+            >
+              Sign Up
+            </Button>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />

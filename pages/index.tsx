@@ -32,6 +32,7 @@ export default function Home() {
             <CardMedia
               component="img"
               height="140"
+              // @ts-ignore
               image={recipe.imageUrl}
               alt={recipe.name}
             />
