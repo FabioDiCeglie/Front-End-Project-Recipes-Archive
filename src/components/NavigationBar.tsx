@@ -9,6 +9,7 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import Link from "next/link";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -63,14 +64,20 @@ export default function NavigationBar() {
             alignItems="center"
             spacing={1}
           >
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            >
-              Recipes
-            </Typography>
+            <Link href="/">
+              <Button
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", sm: "block" },
+                  color: "white",
+                  fontSize: "20px",
+                  fontFamily: "monospace",
+                }}
+              >
+                Recipes
+              </Button>
+            </Link>
             <Button
               component="div"
               sx={{

@@ -5,8 +5,11 @@ import {
   CardMedia,
   Typography,
   Container,
+  Button,
+  CardActions,
 } from "@mui/material";
 import { Recipe } from "../src/interfaceTS/interface";
+import Link from "next/link";
 
 const QUERY = gql`
   query GetRecipes {
@@ -45,6 +48,11 @@ export default function Home() {
                   {recipe.description}
                 </Typography>
               </CardContent>
+              <CardActions>
+                <Link href="/recipe-details">
+                  <Button size="small">Learn More</Button>
+                </Link>
+              </CardActions>
             </Card>
           </Container>
         );
