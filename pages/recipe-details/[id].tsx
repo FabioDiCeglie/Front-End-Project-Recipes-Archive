@@ -41,7 +41,16 @@ export default function RecipeDetails() {
           {recipe.name}
         </Typography>
         <Typography variant="h5" sx={{ mt: 5 }}>
+          Ingredients:
+          <br />
           {recipe.description}
+        </Typography>
+      </Grid>
+      <Grid item xs={5}>
+        <Typography variant="h5" sx={{ mt: 5 }}>
+          Description:
+          <br />
+          Lorem ipsum
         </Typography>
       </Grid>
     </Grid>
