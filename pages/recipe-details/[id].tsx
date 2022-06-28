@@ -5,9 +5,11 @@ import {
   CardMedia,
   Typography,
   Container,
+  Grid,
 } from "@mui/material";
 import { Recipe } from "../../src/interfaceTS/interface";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const QUERY = gql`
   query Recipe($id: ID!) {
@@ -27,7 +29,21 @@ export default function RecipeDetails() {
 
   if (error) return;
   if (loading) return "Loading";
-  console.log(data);
-
-  return <Container sx={{ mt: 12 }}></Container>;
+  const recipe = data.recipe;
+  console.log(recipe);
+  return (
+    <Grid container spacing={4} sx={{ mt: 12, ml: 12 }}>
+      <Grid item xs={4}>
+        <img src={recipe.imageUrl} alt={recipe.name} width={300} height={300} />
+      </Grid>
+      <Grid item xs={5}>
+        <Typography variant="h5" sx={{ mt: 5 }}>
+          {recipe.name}
+        </Typography>
+        <Typography variant="h5" sx={{ mt: 5 }}>
+          {recipe.description}
+        </Typography>
+      </Grid>
+    </Grid>
+  );
 }
