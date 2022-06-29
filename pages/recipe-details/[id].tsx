@@ -17,6 +17,7 @@ const QUERY = gql`
       name
       description
       imageUrl
+      ingredients
     }
   }
 `;
@@ -30,7 +31,7 @@ export default function RecipeDetails() {
   if (error) return;
   if (loading) return "Loading";
   const recipe = data.recipe;
-  console.log(recipe);
+
   return (
     <Grid container spacing={4} sx={{ mt: 12, ml: 12 }}>
       <Grid item xs={4}>
@@ -43,14 +44,14 @@ export default function RecipeDetails() {
         <Typography variant="h5" sx={{ mt: 5 }}>
           Ingredients:
           <br />
-          {recipe.description}
+          {recipe.ingredients}
         </Typography>
       </Grid>
       <Grid item xs={5}>
         <Typography variant="h5" sx={{ mt: 5 }}>
           Description:
           <br />
-          Lorem ipsum
+          {recipe.description}
         </Typography>
       </Grid>
     </Grid>
