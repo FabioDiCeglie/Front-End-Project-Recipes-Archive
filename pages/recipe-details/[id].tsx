@@ -34,6 +34,11 @@ export default function RecipeDetails() {
 
   return (
     <Grid container spacing={4} sx={{ mt: 12, ml: 12 }}>
+      <Grid item xs={1}>
+        <Typography variant="h3" sx={{ mt: 5 }}>
+          👨‍🍳
+        </Typography>
+      </Grid>
       <Grid item xs={4}>
         <img src={recipe.imageUrl} alt={recipe.name} width={300} height={300} />
       </Grid>
@@ -41,14 +46,14 @@ export default function RecipeDetails() {
         <Typography variant="h5" sx={{ mt: 5 }}>
           {recipe.name}
         </Typography>
-        <Typography variant="h5" sx={{ mt: 5 }}>
+        <Typography variant="subtitle1" sx={{ mt: 5 }}>
           Ingredients:
           <br />
           {recipe.ingredients}
         </Typography>
       </Grid>
       <Grid item xs={5}>
-        <Typography variant="h5" sx={{ mt: 5 }}>
+        <Typography variant="subtitle1" sx={{ mt: 5 }}>
           Description:
           <br />
           {recipe.description}

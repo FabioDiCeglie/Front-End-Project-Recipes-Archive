@@ -78,26 +78,18 @@ export default function NavigationBar() {
                 Recipes
               </Button>
             </Link>
-            <Button
-              component="div"
-              sx={{
-                flexGrow: 0.1,
-                display: { xs: "none", sm: "block" },
-                color: "white",
-              }}
-            >
-              Log In
-            </Button>
-            <Button
-              component="div"
-              sx={{
-                flexGrow: 0.1,
-                display: { xs: "none", sm: "block" },
-                color: "white",
-              }}
-            >
-              Sign Up
-            </Button>
+            <Link href="/create-new-recipe">
+              <Button
+                component="div"
+                sx={{
+                  flexGrow: 0.1,
+                  display: { xs: "none", sm: "block" },
+                  color: "white",
+                }}
+              >
+                Create New Recipe
+              </Button>
+            </Link>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />

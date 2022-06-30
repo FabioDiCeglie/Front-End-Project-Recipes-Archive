@@ -15,7 +15,6 @@ const theme = createTheme({
     allVariants: {
       fontFamily: "Roboto",
       textTransform: "none",
-      fontSize: 18,
     },
   },
 });
