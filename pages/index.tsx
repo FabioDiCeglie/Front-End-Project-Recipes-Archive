@@ -8,6 +8,7 @@ import {
   Button,
   CardActions,
   Box,
+  Grid,
 } from "@mui/material";
 import { Recipe } from "../src/interfaceTS/interface";
 import { useRouter } from "next/router";
@@ -31,41 +32,47 @@ export default function Home() {
   if (loading) return "Loading";
 
   return (
-    <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-      <Container sx={{ mt: 12 }}>
-        {data.getRecipes.map((recipe: Recipe, i: number) => {
-          return (
-            <Container sx={{ mt: 6 }} key={i}>
-              <Card sx={{ maxWidth: 300 }}>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  // @ts-ignore
-                  image={recipe.imageUrl}
-                  alt={recipe.name}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {recipe.name}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button
-                    size="small"
-                    onClick={() => {
-                      router.push({
-                        pathname: `/recipe-details/${recipe.id}`,
-                      });
-                    }}
-                  >
-                    Learn More
-                  </Button>
-                </CardActions>
-              </Card>
-            </Container>
-          );
-        })}
-      </Container>
-    </Box>
+    <Container
+      sx={{
+        mt: 16,
+        display: "flex",
+        justifyContent: "space-between",
+      }}
+    >
+      {data.getRecipes.map((recipe: Recipe, i: number) => {
+        return (
+          <Card
+            sx={{
+              maxWidth: 300,
+            }}
+          >
+            <CardMedia
+              component="img"
+              height="140"
+              // @ts-ignore
+              image={recipe.imageUrl}
+              alt={recipe.name}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {recipe.name}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button
+                size="small"
+                onClick={() => {
+                  router.push({
+                    pathname: `/recipe-details/${recipe.id}`,
+                  });
+                }}
+              >
+                Learn More
+              </Button>
+            </CardActions>
+          </Card>
+        );
+      })}
+    </Container>
   );
 }
