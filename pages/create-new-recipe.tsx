@@ -37,6 +37,16 @@ export default function CreateNewRecipe() {
     setImage(file.url); //put the url in local state, next step you can send it to the backend
   };
 
+  const handleChangeDescription = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setDescriptionRecipe(event.target.value);
+  };
+
+  const handleChangeRecipe = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNameRecipe(event.target.value);
+  };
+
   function submitForm(event: any) {
     event.preventDefault();
   }
@@ -46,16 +56,24 @@ export default function CreateNewRecipe() {
       <TextField
         required
         fullWidth
-        id="outlined-required"
         label="Name Recipe"
         value={nameRecipe}
+        onChange={handleChangeRecipe}
       />
       <TextField
         required
         fullWidth
-        id="outlined-required"
         label="Description"
         value={descriptionRecipe}
+        onChange={handleChangeDescription}
+        sx={{ mt: 10 }}
+      />
+      <TextField
+        required
+        fullWidth
+        label="Description"
+        value={descriptionRecipe}
+        onChange={handleChangeDescription}
         sx={{ mt: 10 }}
       />
       <input type="file" onChange={uploadImage} style={{ marginTop: 20 }} />
