@@ -1,19 +1,11 @@
 import { useQuery, gql } from "@apollo/client";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Container,
-  Grid,
-  TextField,
-  Button,
-} from "@mui/material";
+import { Container, TextField, Button } from "@mui/material";
 import { useState } from "react";
 
 export default function CreateNewRecipe() {
   const [image, setImage] = useState();
   const [nameRecipe, setNameRecipe] = useState("");
+  const [ingredientsRecipe, setIngredientsRecipe] = useState("");
   const [descriptionRecipe, setDescriptionRecipe] = useState("");
 
   const uploadImage = async (e: any) => {
@@ -43,8 +35,14 @@ export default function CreateNewRecipe() {
     setDescriptionRecipe(event.target.value);
   };
 
-  const handleChangeRecipe = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNameRecipe(event.target.value);
+  };
+
+  const handleChangeIngredients = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setIngredientsRecipe(event.target.value);
   };
 
   function submitForm(event: any) {
@@ -58,7 +56,7 @@ export default function CreateNewRecipe() {
         fullWidth
         label="Name Recipe"
         value={nameRecipe}
-        onChange={handleChangeRecipe}
+        onChange={handleChangeName}
       />
       <TextField
         required
@@ -71,12 +69,17 @@ export default function CreateNewRecipe() {
       <TextField
         required
         fullWidth
-        label="Description"
-        value={descriptionRecipe}
-        onChange={handleChangeDescription}
+        label="Ingredients"
+        value={ingredientsRecipe}
+        onChange={handleChangeIngredients}
         sx={{ mt: 10 }}
       />
-      <input type="file" onChange={uploadImage} style={{ marginTop: 20 }} />
+
+      <Button variant="contained" component="label" sx={{ mt: 5 }}>
+        Upload File
+        <input type="file" hidden onChange={uploadImage} />
+      </Button>
+
       <div>
         <img
           src={
