@@ -8,7 +8,6 @@ import {
   Grid,
   TextField,
   Button,
-  Form,
 } from "@mui/material";
 import { useState } from "react";
 
@@ -38,6 +37,10 @@ export default function CreateNewRecipe() {
     setImage(file.url); //put the url in local state, next step you can send it to the backend
   };
 
+  function submitForm(event: any) {
+    event.preventDefault();
+  }
+
   return (
     <Container sx={{ mt: 14 }}>
       <TextField
@@ -53,9 +56,9 @@ export default function CreateNewRecipe() {
         id="outlined-required"
         label="Description"
         value={descriptionRecipe}
+        sx={{ mt: 10 }}
       />
-      <input type="file" onChange={uploadImage} />
-
+      <input type="file" onChange={uploadImage} style={{ marginTop: 20 }} />
       <div>
         <img
           src={
@@ -72,11 +75,15 @@ export default function CreateNewRecipe() {
           ""
         )}
       </div>
-      <Form.Group className="mt-5">
-        <Button variant="primary" type="submit" onClick={submitForm}>
-          Sign up
-        </Button>
-      </Form.Group>
+
+      <Button
+        type="submit"
+        variant="contained"
+        onClick={submitForm}
+        sx={{ mt: 10 }}
+      >
+        Create Recipe
+      </Button>
     </Container>
   );
 }
