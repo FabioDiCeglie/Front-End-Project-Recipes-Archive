@@ -1,12 +1,23 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import { Container, TextField, Button } from "@mui/material";
 import { useState } from "react";
 
+const CREATE_NEW_RECIPE = gql`
+  mutation Mutation($recipeInput: RecipeInput) {
+    createRecipe(recipeInput: $recipeInput) {
+      id
+    }
+  }
+`;
+
 export default function CreateNewRecipe() {
-  const [image, setImage] = useState();
+  const [image, setImage] = useState("");
   const [nameRecipe, setNameRecipe] = useState("");
   const [ingredientsRecipe, setIngredientsRecipe] = useState("");
   const [descriptionRecipe, setDescriptionRecipe] = useState("");
+
+  const [mutateFunction, { data, loading, error }] =
+    useMutation(CREATE_NEW_RECIPE);
 
   const uploadImage = async (e: any) => {
     const files = e.target.files;
@@ -47,6 +58,18 @@ export default function CreateNewRecipe() {
 
   function submitForm(event: any) {
     event.preventDefault();
+    mutateFunction({
+      variables: {
+        name: nameRecipe,
+        description: descriptionRecipe,
+        imageUrl: image,
+        ingredients: ingredientsRecipe,
+      },
+    });
+    setImage("");
+    setNameRecipe("");
+    setIngredientsRecipe("");
+    setDescriptionRecipe("");
   }
 
   return (
