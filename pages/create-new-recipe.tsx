@@ -18,15 +18,16 @@ export default function CreateNewRecipe() {
 
   const [createRecipe] = useMutation(CREATE_NEW_RECIPE);
 
-  const submitForm = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(nameRecipe);
+  const submitForm = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     createRecipe({
       variables: {
-        name: nameRecipe,
-        description: descriptionRecipe,
-        imageUrl: image,
-        ingredients: ingredientsRecipe,
+        recipeInput: {
+          name: nameRecipe,
+          description: descriptionRecipe,
+          imageUrl: image,
+          ingredients: ingredientsRecipe,
+        },
       },
     });
     setImage("");
