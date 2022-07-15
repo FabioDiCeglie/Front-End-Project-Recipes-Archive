@@ -53,7 +53,7 @@ export default function RecipeDetails() {
             {recipe.ingredients}
           </Typography>
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={8}>
           <Typography variant="subtitle1" sx={{ mt: 5 }}>
             Description:
             <br />
