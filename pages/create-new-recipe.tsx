@@ -1,6 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 import { Container, TextField, Button, Grid } from "@mui/material";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const CREATE_NEW_RECIPE = gql`
   mutation Mutation($recipeInput: RecipeInput) {
@@ -11,6 +12,7 @@ const CREATE_NEW_RECIPE = gql`
 `;
 
 export default function CreateNewRecipe() {
+  const router = useRouter();
   const [image, setImage] = useState("");
   const [nameRecipe, setNameRecipe] = useState("");
   const [ingredientsRecipe, setIngredientsRecipe] = useState("");
@@ -30,10 +32,9 @@ export default function CreateNewRecipe() {
         },
       },
     });
-    setImage("");
-    setNameRecipe("");
-    setIngredientsRecipe("");
-    setDescriptionRecipe("");
+    router.push({
+      pathname: `/`,
+    });
   };
 
   const uploadImage = async (e: any) => {

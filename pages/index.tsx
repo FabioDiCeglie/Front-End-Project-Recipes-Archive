@@ -7,7 +7,6 @@ import {
   Container,
   Button,
   CardActions,
-  Box,
   Grid,
 } from "@mui/material";
 import { Recipe } from "../src/interfaceTS/interface";
@@ -44,7 +43,7 @@ export default function Home() {
               >
                 <CardMedia
                   component="img"
-                  height="140"
+                  height="300"
                   // @ts-ignore
                   image={recipe.imageUrl}
                   alt={recipe.name}
