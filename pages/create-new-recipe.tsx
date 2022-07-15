@@ -1,5 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
-import { Container, TextField, Button } from "@mui/material";
+import { Container, TextField, Button, Grid } from "@mui/material";
 import { useState } from "react";
 
 const CREATE_NEW_RECIPE = gql`
@@ -16,8 +16,24 @@ export default function CreateNewRecipe() {
   const [ingredientsRecipe, setIngredientsRecipe] = useState("");
   const [descriptionRecipe, setDescriptionRecipe] = useState("");
 
-  const [mutateFunction, { data, loading, error }] =
-    useMutation(CREATE_NEW_RECIPE);
+  const [createRecipe] = useMutation(CREATE_NEW_RECIPE);
+
+  const submitForm = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(nameRecipe);
+    event.preventDefault();
+    createRecipe({
+      variables: {
+        name: nameRecipe,
+        description: descriptionRecipe,
+        imageUrl: image,
+        ingredients: ingredientsRecipe,
+      },
+    });
+    setImage("");
+    setNameRecipe("");
+    setIngredientsRecipe("");
+    setDescriptionRecipe("");
+  };
 
   const uploadImage = async (e: any) => {
     const files = e.target.files;
@@ -36,7 +52,6 @@ export default function CreateNewRecipe() {
     );
 
     const file = await res.json();
-    console.log("file", file); //check if you are getting the url back
     setImage(file.url); //put the url in local state, next step you can send it to the backend
   };
 
@@ -56,78 +71,61 @@ export default function CreateNewRecipe() {
     setIngredientsRecipe(event.target.value);
   };
 
-  function submitForm(event: any) {
-    event.preventDefault();
-    mutateFunction({
-      variables: {
-        name: nameRecipe,
-        description: descriptionRecipe,
-        imageUrl: image,
-        ingredients: ingredientsRecipe,
-      },
-    });
-    setImage("");
-    setNameRecipe("");
-    setIngredientsRecipe("");
-    setDescriptionRecipe("");
-  }
-
   return (
     <Container sx={{ mt: 14 }}>
-      <TextField
-        required
-        fullWidth
-        label="Name Recipe"
-        value={nameRecipe}
-        onChange={handleChangeName}
-      />
-      <TextField
-        required
-        fullWidth
-        label="Description"
-        value={descriptionRecipe}
-        onChange={handleChangeDescription}
-        sx={{ mt: 10 }}
-      />
-      <TextField
-        required
-        fullWidth
-        label="Ingredients"
-        value={ingredientsRecipe}
-        onChange={handleChangeIngredients}
-        sx={{ mt: 10 }}
-      />
-
-      <Button variant="contained" component="label" sx={{ mt: 5 }}>
-        Upload File
-        <input type="file" hidden onChange={uploadImage} />
-      </Button>
-
-      <div>
-        <img
-          src={
-            image
-              ? image
-              : "https://clippingpathgreat.com/wp-content/uploads/2021/04/upload-files.jpg"
-          }
-          alt="Upload"
-          style={{ width: 200 }}
-        />
-        {image ? (
-          <p style={{ fontSize: 20, color: "white" }}>Succesfully uploaded!</p>
-        ) : (
-          ""
-        )}
-      </div>
-
-      <Button
-        type="submit"
-        variant="contained"
-        onClick={submitForm}
-        sx={{ mt: 10 }}
-      >
-        Create Recipe
-      </Button>
+      <Grid container spacing={10}>
+        <Grid item xs={10}>
+          <TextField
+            required
+            label="Name Recipe"
+            value={nameRecipe}
+            onChange={handleChangeName}
+            sx={{ width: "30%" }}
+          />
+        </Grid>
+        <Grid item xs={5}>
+          <TextField
+            required
+            multiline
+            label="Description"
+            value={descriptionRecipe}
+            onChange={handleChangeDescription}
+            sx={{ width: "90%" }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            required
+            multiline
+            label="Ingredients"
+            value={ingredientsRecipe}
+            onChange={handleChangeIngredients}
+            sx={{ width: "90%" }}
+          />
+        </Grid>
+        <Grid item xs={2}>
+          <Button variant="contained" component="label">
+            Upload File
+            <input type="file" hidden onChange={uploadImage} />
+          </Button>
+        </Grid>
+        <Grid item xs={7}>
+          <img
+            src={
+              image
+                ? image
+                : "https://clippingpathgreat.com/wp-content/uploads/2021/04/upload-files.jpg"
+            }
+            alt="Upload"
+            style={{ width: 200 }}
+          />
+        </Grid>
+        <Grid item xs={2}>
+          <Button type="submit" variant="contained" onClick={submitForm}>
+            Create
+          </Button>
+        </Grid>
+      </Grid>
     </Container>
   );
 }
