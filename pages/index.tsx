@@ -32,47 +32,45 @@ export default function Home() {
   if (loading) return "Loading";
 
   return (
-    <Container
-      sx={{
-        mt: 16,
-        display: "flex",
-        justifyContent: "space-between",
-      }}
-    >
-      {data.getRecipes.map((recipe: Recipe, i: number) => {
-        return (
-          <Card
-            sx={{
-              maxWidth: 300,
-            }}
-          >
-            <CardMedia
-              component="img"
-              height="140"
-              // @ts-ignore
-              image={recipe.imageUrl}
-              alt={recipe.name}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {recipe.name}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button
-                size="small"
-                onClick={() => {
-                  router.push({
-                    pathname: `/recipe-details/${recipe.id}`,
-                  });
+    <Container>
+      <Grid container spacing={6} sx={{ mt: 12 }}>
+        {data.getRecipes.map((recipe: Recipe, i: number) => {
+          return (
+            <Grid item xs={4}>
+              <Card
+                sx={{
+                  maxWidth: 300,
                 }}
               >
-                Learn More
-              </Button>
-            </CardActions>
-          </Card>
-        );
-      })}
+                <CardMedia
+                  component="img"
+                  height="140"
+                  // @ts-ignore
+                  image={recipe.imageUrl}
+                  alt={recipe.name}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {recipe.name}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      router.push({
+                        pathname: `/recipe-details/${recipe.id}`,
+                      });
+                    }}
+                  >
+                    Learn More
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          );
+        })}
+      </Grid>
     </Container>
   );
 }
